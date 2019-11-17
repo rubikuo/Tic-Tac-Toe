@@ -60,3 +60,11 @@ button {
   display: inline;
   margin: 10px;
 }
+
+.winboxs{
+  color: blueviolet;
+}
+
+.bkGrey{
+  background-color: grey;
+}

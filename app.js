@@ -4,6 +4,7 @@ const spans = document.querySelectorAll(".smlCtn span");
 const btnO = document.getElementById("btnO");
 const btnX = document.getElementById("btnX");
 const resetBtn = document.getElementById("resetBtn");
+const msgDiv = document.querySelector(".msgDiv");
 
 let turn = true;
 let choose = false;
@@ -37,19 +38,15 @@ function startWithO(e) {
       turn = false;
       turntimes++;
       findWinner();
-      if (win === true) {
-        console.log("ok");
-        return;
-      }
+      decoEmptyBox();
+      checkDraw();
     } else {
       e.target.firstChild.textContent = "X";
       turn = true;
       turntimes++;
       findWinner();
-      if (win === true) {
-        console.log("ok");
-        return;
-      }
+      decoEmptyBox();
+      checkDraw();
     }
   }
 }
@@ -60,7 +57,6 @@ btnX.addEventListener("click", function(e) {
   for (let smlCtn of smlCtns) {
     smlCtn.addEventListener("click", startWithX);
   }
-
 });
 
 function startWithX(e) {
@@ -75,15 +71,16 @@ function startWithX(e) {
       turntimes++;
       findWinner();
       decoEmptyBox();
+      checkDraw();
     } else {
       e.target.firstChild.textContent = "O";
       turn = true;
       turntimes++;
       findWinner();
       decoEmptyBox();
+      checkDraw();
     }
   }
- 
 }
 
 resetBtn.addEventListener("click", clearAll);
@@ -103,6 +100,9 @@ function clearAll(e) {
     smlCtn.removeEventListener("click", startWithO);
     //smlCtn.classList.remove("bkGrey");
   }
+
+  msgDiv.style.display = "none";
+  msgDiv.firstChild.textContent = "";
 }
 
 function findWinner() {
@@ -116,7 +116,7 @@ function findWinner() {
   let box8 = document.getElementById("eight");
   let box9 = document.getElementById("nine");
   console.log(turntimes);
-  if (turntimes >= 4 && turntimes < 9 && win === false) {
+  if (turntimes >= 4 && win === false) {
     if (
       box1.textContent !== "" &&
       box1.textContent === box2.textContent &&
@@ -182,26 +182,27 @@ function findWinner() {
       console.log("win");
       win = true;
       return;
-    } 
-  }
-}
-
-function decoEmptyBox(){
-  if (win === true) {
-    let emptyboxs = Array.from(spans).filter(
-      span => span.textContent === ""
-    );
-    console.log(emptyboxs);
-    for (let emptybox of emptyboxs) {
-      emptybox.parentElement.removeEventListener("click", startWithX);
-     // emptybox.parentElement.classList.add("bkGrey");
     }
   }
 }
 
-function checkDraw(){
-   if(turntimes ===9 && win === false){
-     alert("draw");
-   }
+function decoEmptyBox() {
+  if (win === true) {
+    let emptyboxs = Array.from(spans).filter(span => span.textContent === "");
+    console.log(emptyboxs);
+    for (let emptybox of emptyboxs) {
+      emptybox.parentElement.removeEventListener("click", startWithX);
+      // emptybox.parentElement.classList.add("bkGrey");
+    }
+  }
+}
 
+function checkDraw() {
+  if ((turntimes >= 4 && win === true) || (turntimes === 9 && win === true)) {
+    msgDiv.style.display = "block";
+    msgDiv.firstChild.textContent = "win";
+  } else if (turntimes === 9 && win === false) {
+    msgDiv.style.display = "block";
+    msgDiv.firstChild.textContent = "draw";
+  }
 }

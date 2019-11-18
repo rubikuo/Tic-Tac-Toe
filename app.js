@@ -11,6 +11,7 @@ let choose = false;
 let turntimes = 0;
 let win = false;
 
+// to check if the user has chosen options
 bigctn.addEventListener("click", checkchoose);
 
 function checkchoose() {
@@ -19,66 +20,56 @@ function checkchoose() {
   }
 }
 
-btnO.addEventListener("click", function() {
-  btnX.style.display = "none";
-  choose = true;
-  for (let smlCtn of smlCtns) {
-    smlCtn.addEventListener("click", startWithO);
-  }
-});
+btnX.addEventListener("click", onStartClick);
+btnO.addEventListener("click", onStartClick);
 
-function startWithO(e) {
-  if (choose === false) {
-    return;
+function onStartClick(e) {
+  let otherBtn;
+  if (this.id === "btnO") {
+    otherBtn = btnX;
+    for (let smlCtn of smlCtns) {
+      smlCtn.addEventListener("click", startWithO);
+    }
   } else {
-    if (e.target.firstChild.textContent !== "") {
-      return;
-    } else if (e.target.firstChild.textContent === "" && turn === true) {
-      e.target.firstChild.textContent = "O";
-      turn = false;
-      turntimes++;
-      findWinner();
-      decoEmptyBox();
-      checkDraw();
-    } else {
-      e.target.firstChild.textContent = "X";
-      turn = true;
-      turntimes++;
-      findWinner();
-      decoEmptyBox();
-      checkDraw();
+    otherBtn = btnO;
+    for (let smlCtn of smlCtns) {
+      smlCtn.addEventListener("click", startWithX);
     }
   }
+  otherBtn.style.display = "none";
+  choose = true;
 }
 
-btnX.addEventListener("click", function(e) {
-  btnO.style.display = "none";
-  choose = true;
-  for (let smlCtn of smlCtns) {
-    smlCtn.addEventListener("click", startWithX);
-  }
-});
-
+//  because we merge two functions 
+function startWithO(e) {
+  startWith("O", e);
+}
 function startWithX(e) {
+  startWith("X", e);
+}
+// to set the O or X to a parameter as type so let the function control the type
+function startWith(type, e) {
+  let otherType;
+  if (type === "X") {
+    otherType = "O";
+  } else {
+    otherType = "X";
+  }
   if (choose === false) {
     return;
   } else {
     if (e.target.firstChild.textContent !== "") {
       return;
     } else if (e.target.firstChild.textContent === "" && turn === true) {
-      e.target.firstChild.textContent = "X";
+      e.target.firstChild.textContent = type;
       turn = false;
       turntimes++;
       findWinner();
-      decoEmptyBox();
-      checkDraw();
     } else {
-      e.target.firstChild.textContent = "O";
+      e.target.firstChild.textContent = otherType;
       turn = true;
       turntimes++;
       findWinner();
-      decoEmptyBox();
-      checkDraw();
     }
   }
 }
@@ -98,7 +89,6 @@ function clearAll(e) {
   for (let smlCtn of smlCtns) {
     smlCtn.removeEventListener("click", startWithX);
     smlCtn.removeEventListener("click", startWithO);
-    //smlCtn.classList.remove("bkGrey");
   }
 
   msgDiv.style.display = "none";
@@ -106,102 +96,70 @@ function clearAll(e) {
 }
 
 function findWinner() {
-  let box1 = document.getElementById("one");
-  let box2 = document.getElementById("two");
-  let box3 = document.getElementById("three");
-  let box4 = document.getElementById("four");
-  let box5 = document.getElementById("five");
-  let box6 = document.getElementById("six");
-  let box7 = document.getElementById("seven");
-  let box8 = document.getElementById("eight");
-  let box9 = document.getElementById("nine");
-  console.log(turntimes);
-  if (turntimes >= 4 && win === false) {
-    if (
-      box1.textContent !== "" &&
-      box1.textContent === box2.textContent &&
-      box1.textContent === box3.textContent
-    ) {
-      console.log("win");
-
-      win = true;
-      return;
-    } else if (
-      box4.textContent !== "" &&
-      box4.textContent === box5.textContent &&
-      box4.textContent === box6.textContent
-    ) {
-      console.log("win");
-      win = true;
-      return;
-    } else if (
-      box7.textContent !== "" &&
-      box7.textContent === box8.textContent &&
-      box7.textContent === box9.textContent
-    ) {
-      console.log("win");
-      win = true;
-      return;
-    } else if (
-      box1.textContent !== "" &&
-      box1.textContent === box4.textContent &&
-      box1.textContent === box7.textContent
-    ) {
-      console.log("win");
-      win = true;
-      return;
-    } else if (
-      box2.textContent !== "" &&
-      box2.textContent === box5.textContent &&
-      box2.textContent === box8.textContent
-    ) {
-      console.log("win");
-      win = true;
-      return;
-    } else if (
-      box3.textContent !== "" &&
-      box3.textContent === box6.textContent &&
-      box3.textContent === box9.textContent
-    ) {
-      console.log("win");
-      win = true;
-      return;
-    } else if (
-      box1.textContent !== "" &&
-      box1.textContent === box5.textContent &&
-      box1.textContent === box9.textContent
-    ) {
-      console.log("win");
-      win = true;
-      return;
-    } else if (
-      box3.textContent !== "" &&
-      box3.textContent === box5.textContent &&
-      box3.textContent === box7.textContent
-    ) {
-      console.log("win");
-      win = true;
-      return;
-    }
+  let xWon = checkIfWinner("X");
+  let oWon = checkIfWinner("O");
+  if (xWon) {
+    console.log("X WON");
+    showMsg(xWon);
+    decoEmptyBox(xWon);
+  } else if (oWon) {
+    console.log("O WON");
+    showMsg(oWon);
+  } else if (turntimes === 9) {
+    console.log("DRAW");
+    let result = false;
+    showMsg(result);
+    decoEmptyBox(oWon);
   }
 }
 
-function decoEmptyBox() {
-  if (win === true) {
+function checkIfWinner(type) {
+  console.log("check");
+  let boxes = document.querySelectorAll(".smlCtn span");
+  let winCases = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8]
+  ];
+
+  for (let i = 0; i < winCases.length; i++) {
+    let winCase = winCases[i];
+    let win = true; // this must be in loop in this case otherwise this will not work
+    for (let index of winCase) {
+      if (boxes[index].textContent !== type) {
+        win = false;
+        break;
+      }
+    }
+    if (win) return true;
+  }
+  return false;
+}
+
+function decoEmptyBox(result) {
+  if (result === true) {
     let emptyboxs = Array.from(spans).filter(span => span.textContent === "");
     console.log(emptyboxs);
     for (let emptybox of emptyboxs) {
       emptybox.parentElement.removeEventListener("click", startWithX);
-      // emptybox.parentElement.classList.add("bkGrey");
+      emptybox.parentElement.removeEventListener("click", startWithO);
     }
   }
 }
 
-function checkDraw() {
-  if ((turntimes >= 4 && win === true) || (turntimes === 9 && win === true)) {
+function showMsg(result) {
+  if (
+    (turntimes >= 4 && result === true) ||
+    (turntimes === 9 && result === true)
+  ) {
     msgDiv.style.display = "block";
     msgDiv.firstChild.textContent = "win";
-  } else if (turntimes === 9 && win === false) {
+  } else if (result === false) {
     msgDiv.style.display = "block";
     msgDiv.firstChild.textContent = "draw";
   }

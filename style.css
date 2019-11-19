@@ -112,21 +112,83 @@ button {
 .firefly {
   width: 10px;
   height: 10px;
-  animation: flyglow 2.5s infinite;
-  animation-direction: alternate; 
   background-color: rgba(255, 255, 0, 0.687);
   position: absolute;
   border-radius: 30px;
   box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
- -webkit-box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
- -moz-box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
+  -webkit-box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
+  -moz-box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
 }
 
-@keyframes flyglow{
-  0%{transform: scale(0.1) translate(20px, 30px)}
-  50%{transform: scale(0.2) translate(200px, 50px)}
-  80%{transform: scale(0.1) translate(200px, 50px)}
-  100% {transform: scale(0.3) translate(300px, 100px)}
+.firefly1 {
+  animation: flyglow1 2.5s infinite;
+  animation-timing-function: ease-in;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes flyglow1 {
+ 0% {
+    transform: scale(0.05) translate(180px, 20px);
+    top: 30%;
+    left: 15%;
+    opacity: 0%;
+  }
+  20% {
+    transform: scale(0.1) translate( 150px, 50px);
+    opacity: 60%;
+    left: 20%;
+  }
+  40% {
+    transform: scale(0.12) translate( 100px, 60px);
+  }
+  60% {
+    transform: scale(0.1) translate( 50px, 70px);
+  }
+  80% {
+    transform: scale(0.17) translate(-40px, 180px);
+    opacity: 70%;
+    left: 5%;
+  }
+  100% {
+    transform: scale(0.22) translate( -70px, 200px);
+    top: 50%;
+    left: 35%;
+    opacity: 0%;
+  } 
+
+}
+
+.firefly2 {
+  animation: flyglow2 3s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  left: 120px;
+  top: 200px;
+  border-radius: 50px;
+}
+
+@keyframes flyglow2 {
+  0% {
+    transform: scale(0.2) translate(-200px, 50px);
+    top: 200px;
+  }
+  30% {
+    transform: scale(0.25) translate(-100px, 60px);
+    top: 230px;
+  }
+  50% {
+    transform: scale(0.1) translate(50px, 70px);
+  }
+  80% {
+    transform: scale(0.2) translate(30px, 80px);
+    top: 250px;
+    left: 120px;
+  }
+  100% {
+    transform: scale(0.25) translate(20px, 90px);
+    top: 230px;
+    left: 200px;
+  }
 }
 
 .anima {
@@ -136,18 +198,15 @@ button {
   font-size: 6rem;
   top: 2%;
   left: 35%;
-  
 }
 
 @keyframes word {
   from {
     font-size: 0rem;
     top: 50%;
-
   }
   to {
     font-size: 6rem;
     top: 2%;
-     
   }
 }

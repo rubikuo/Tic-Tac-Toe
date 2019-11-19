@@ -196,3 +196,5 @@ function showMsg(type, result) {
     msgDiv.firstChild.textContent = "draw";
   }
 }
+
+

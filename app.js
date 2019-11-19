@@ -40,7 +40,7 @@ function onStartClick(e) {
   choose = true;
 }
 
-//  because we merge two functions 
+//  because we merge two functions
 function startWithO(e) {
   startWith("O", e);
 }
@@ -107,7 +107,7 @@ function findWinner() {
     showMsg("O", oWon);
     decoEmptyBox(oWon);
   } else if (turntimes === 9) {
-    console.log("DRAW");
+    //console.log("DRAW");
     let result = false;
     showMsg("", result);
   }

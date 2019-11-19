@@ -7,6 +7,19 @@
 
 body {
   text-align: center;
+  background: linear-gradient(
+      0deg,
+      rgba(232, 230, 230, 0.872),
+      rgba(218, 218, 218, 0.762)
+    ),
+    url("https://media.tacdn.com/media/attractions-splice-spp-674x446/07/97/6c/0f.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: rgba(177, 177, 177, 0.612);
+  font-family: "Kalam", cursive;
+  text-shadow: 1px 1px 2px rgb(250, 250, 250);
 }
 
 .container {
@@ -16,6 +29,7 @@ body {
   flex-flow: column wrap;
   align-content: center;
   justify-content: center;
+  position: relative;
 }
 
 .btnDiv {
@@ -82,10 +96,20 @@ button {
   margin: 10px;
 }
 
-.winboxs{
+.winboxs {
   color: blueviolet;
 }
 
-.bkGrey{
+.bkGrey {
   background-color: grey;
+}
+
+
+.firefly{
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 0, 0.687);
+  position: absolute;
+  border-radius: 30px;
+  box-shadow: 2px 2px 9px yellow;
 }

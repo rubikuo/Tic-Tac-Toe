@@ -48,6 +48,7 @@ body {
   z-index: 0;
 }
 
+/* pop-up message div */
 .msgDiv {
   width: 300px;
   height: 100px;
@@ -109,6 +110,7 @@ button {
   background-color: grey;
 }
 
+/* animation for fireflies */
 .firefly {
   width: 10px;
   height: 10px;
@@ -159,38 +161,75 @@ button {
 }
 
 .firefly2 {
-  animation: flyglow2 3s infinite;
+  animation: flyglow2 3.5s infinite;
   animation-direction: alternate;
   animation-timing-function: ease-in-out;
-  left: 120px;
-  top: 200px;
+  left: 20%;
+  top: 40%;
   border-radius: 50px;
 }
 
 @keyframes flyglow2 {
   0% {
     transform: scale(0.2) translate(-200px, 50px);
-    top: 200px;
+    top: 35%;
   }
   30% {
     transform: scale(0.25) translate(-100px, 60px);
-    top: 230px;
+    top: 30%;
   }
   50% {
     transform: scale(0.1) translate(50px, 70px);
   }
   80% {
     transform: scale(0.2) translate(30px, 80px);
-    top: 250px;
-    left: 120px;
+    top: 43%;
+    left: 40%;
   }
   100% {
     transform: scale(0.25) translate(20px, 90px);
     top: 230px;
-    left: 200px;
+    left: 30%;
   }
 }
 
+.firefly3 {
+  animation: flyglow3 3.5s infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+  right: 20%;
+  bottom: 30%;
+  border-radius: 50px;
+}
+
+@keyframes flyglow3 {
+  0% {
+    transform: scale(0.2) translate(-200px, 50px);
+    right: 20%;
+    bottom: 40%;
+
+  }
+  30% {
+    transform: scale(0.25) translate(-30px, 60px);
+    right: 20%;
+    bottom: 50%;
+  }
+  50% {
+    transform: scale(0.1) translate(20px, 70px);
+  }
+  80% {
+    transform: scale(0.2) translate(10px, 80px);
+    right: 10%;
+    bottom: 30%;
+  }
+  100% {
+    transform: scale(0.25) translate(20px, 90px);
+    right: 20%;
+    bottom: 40%;
+  }
+}
+
+/* animation for the X & O */
 .anima {
   position: absolute;
   animation: word 0.2s;

@@ -5,21 +5,26 @@
   font-family: "Caveat Brush", cursive;
 }
 
+
 body {
   text-align: center;
   background: linear-gradient(
       0deg,
-      rgba(232, 230, 230, 0.872),
-      rgba(218, 218, 218, 0.762)
+      rgba(128, 123, 123, 0.625),
+      rgba(118, 116, 116, 0.495)
     ),
     url("https://media.tacdn.com/media/attractions-splice-spp-674x446/07/97/6c/0f.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: rgba(177, 177, 177, 0.612);
+  background-color: rgba(177, 177, 177, 0.605);
   font-family: "Kalam", cursive;
   text-shadow: 1px 1px 2px rgb(250, 250, 250);
+}
+
+h1 {
+  font-size: 4rem;
 }
 
 .container {
@@ -71,10 +76,12 @@ body {
 .smlCtn {
   width: 32%;
   height: 32%;
-  margin: -6px; /* to make the small box overlap each other */
-  border: 6px dotted rgb(25, 25, 99);
+  margin: -3px; /* to make the small box overlap each other */
+  border: 6px dotted rgb(0, 0, 0);
   text-align: center;
   position: relative;
+  background-color: rgba(227, 227, 227, 0.303);
+  
 }
 
 .smlCtn span {
@@ -90,6 +97,10 @@ button {
   border-radius: 10px;
   color: white;
   background-color: rgb(43, 43, 152);
+}
+
+button:focus{
+  outline: none;
 }
 
 .resetDiv {
@@ -123,109 +134,211 @@ button {
 }
 
 .firefly1 {
-  animation: flyglow1 2.5s infinite;
+  animation: flyglow1 5s infinite;
   animation-timing-function: ease-in;
   animation-direction: alternate-reverse;
+  top: 50%;
+  right: 3%;
 }
 
 @keyframes flyglow1 {
- 0% {
-    transform: scale(0.05) translate(180px, 20px);
-    top: 30%;
-    left: 15%;
+  0% {
+    transform: scale(0.1);
+    right: 7%;
     opacity: 0%;
   }
   20% {
-    transform: scale(0.1) translate( 150px, 50px);
-    opacity: 60%;
-    left: 20%;
+    transform: scale(0.14);
+    right: 10%;
+    opacity: 100%;
   }
   40% {
-    transform: scale(0.12) translate( 100px, 60px);
+    transform: scale(0.2);
+    left: 20%;
+    opacity: 60%;
   }
-  60% {
-    transform: scale(0.1) translate( 50px, 70px);
+  55% {
+    transform: scale(0.12);
+    left: 16%;
+    opacity: 90%;
   }
-  80% {
-    transform: scale(0.17) translate(-40px, 180px);
-    opacity: 70%;
-    left: 5%;
+  70% {
+    opacity: 80%;
   }
   100% {
-    transform: scale(0.22) translate( -70px, 200px);
-    top: 50%;
-    left: 35%;
+    transform: scale(0.2);
+    top: 70%;
+    left: 10%;
     opacity: 0%;
-  } 
-
+  }
 }
 
 .firefly2 {
-  animation: flyglow2 3.5s infinite;
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  left: 20%;
-  top: 40%;
-  border-radius: 50px;
+  animation: flyglow2 4.2s infinite;
+  animation-timing-function: ease-in;
+  animation-direction: alternate-reverse;
+  right: 2%;
+  bottom: 50%;
 }
 
 @keyframes flyglow2 {
   0% {
-    transform: scale(0.2) translate(-200px, 50px);
-    top: 35%;
+    transform: scale(0.06);
+    top: 67%;
+    right: 5%;
+    opacity: 0%;
   }
-  30% {
-    transform: scale(0.25) translate(-100px, 60px);
-    top: 30%;
+  20% {
+    transform: scale(0.15);
+    opacity: 85%;
+    right: -3%;
   }
-  50% {
-    transform: scale(0.1) translate(50px, 70px);
+  40% {
+    transform: scale(0.14);
+    opacity: 90%;
+    right: 7%;
   }
-  80% {
-    transform: scale(0.2) translate(30px, 80px);
-    top: 43%;
-    left: 40%;
+  60% {
+    transform: scale(0.13);
+    opacity: 50%;
+  }
+  85% {
+    transform: scale(0.12);
+    opacity: 100%;
+    left: 1%;
   }
   100% {
-    transform: scale(0.25) translate(20px, 90px);
-    top: 230px;
-    left: 30%;
+    transform: scale(0.08);
+    top: 80%;
+    left: -9%;
+    opacity: 0%;
   }
 }
 
 .firefly3 {
-  animation: flyglow3 3.5s infinite;
-  animation-direction: alternate;
-  animation-timing-function: ease-in-out;
-  right: 20%;
-  bottom: 30%;
-  border-radius: 50px;
+  animation: flyglow3 5.8s infinite;
+  animation-timing-function: ease-in;
+  animation-direction: alternate-reverse;
+  left: 9%;
+  bottom: 65%;
 }
 
 @keyframes flyglow3 {
   0% {
-    transform: scale(0.2) translate(-200px, 50px);
-    right: 20%;
-    bottom: 40%;
-
+    transform: scale(0.05);
+    top: 40%;
+    left: 14%;
+    opacity: 0%;
   }
-  30% {
-    transform: scale(0.25) translate(-30px, 60px);
-    right: 20%;
-    bottom: 50%;
+  20% {
+    transform: scale(0.1);
+    opacity: 90%;
+    left: 9%;
   }
-  50% {
-    transform: scale(0.1) translate(20px, 70px);
+  40% {
+    transform: scale(0.2);
+    opacity: 90%;
+    left: 11%;
+  }
+  60% {
+    transform: scale(0.1);
+    opacity: 78%;
   }
   80% {
-    transform: scale(0.2) translate(10px, 80px);
-    right: 10%;
-    bottom: 30%;
+    transform: scale(0.13);
+    opacity: 100%;
+    right: 11%;
   }
   100% {
-    transform: scale(0.25) translate(20px, 90px);
-    right: 20%;
-    bottom: 40%;
+    transform: scale(0.08);
+    top: 70%;
+    right: 5%;
+    opacity: 0%;
+  }
+}
+
+.firefly4 {
+  animation: flyglow4 4s infinite;
+  animation-timing-function: ease-in;
+  animation-direction: alternate-reverse;
+  right: 10%;
+  top: 50%;
+}
+
+@keyframes flyglow4 {
+  0% {
+    transform: scale(0.09) translate(130px, 20px);
+    top: 30%;
+    right: 13%;
+    opacity: 0%;
+  }
+  20% {
+    transform: scale(0.1);
+    opacity: 100%;
+    right: 7%;
+  }
+  40% {
+    transform: scale(0.2);
+    opacity: 90%;
+    right: -2%;
+  }
+  50% {
+    transform: scale(0.1);
+    opacity: 0%;
+    left: 23%;
+  }
+  70% {
+    transform: scale(0.13);
+    opacity: 100%;
+    left: 29%;
+  }
+  100% {
+    transform: scale(0.05);
+    top: 69%;
+    left: 18%;
+    opacity: 0%;
+  }
+}
+
+.firefly5 {
+  animation: flyglow5 4.8s infinite;
+  animation-timing-function: ease-in;
+  animation-direction: alternate-reverse;
+  right: 3%;
+  bottom: 32%;
+}
+
+@keyframes flyglow5 {
+  0% {
+    transform: scale(0.06);
+    top: 60%;
+    right: 10%;
+    opacity: 0%;
+  }
+  20% {
+    transform: scale(0.1);
+    opacity: 90%;
+    right: 9%;
+  }
+  45% {
+    transform: scale(0.13);
+    opacity: 95%;
+    right: 16%;
+  }
+  60% {
+    transform: scale(0.14);
+    opacity: 50%;
+  }
+  80% {
+    transform: scale(0.15);
+    opacity: 90%;
+    left: -6%;
+  }
+  100% {
+    transform: scale(0.07);
+    top: 30%;
+    left: 1%;
+    opacity: 0%;
   }
 }
 

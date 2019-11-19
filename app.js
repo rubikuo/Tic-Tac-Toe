@@ -3,6 +3,7 @@ const smlCtns = document.querySelectorAll("div.smlCtn");
 const spans = document.querySelectorAll(".smlCtn span");
 const btnO = document.getElementById("btnO");
 const btnX = document.getElementById("btnX");
+const restartBtn = document.getElementById("restartBtn");
 const resetBtn = document.getElementById("resetBtn");
 const msgDiv = document.querySelector(".msgDiv");
 
@@ -10,6 +11,11 @@ let turn = true;
 let choose = false;
 let turntimes = 0;
 let win = false;
+let play1 = document.querySelector(".p1");
+let play2 = document.querySelector(".p2");
+let scoreP1 = 0;
+let scoreP2 = 0;
+let P1Type; // global variable for the playtype for later to sense who is the first player
 
 // to check if the user has chosen options
 bigctn.addEventListener("click", checkchoose);
@@ -55,6 +61,7 @@ function startWith(type, e) {
   } else {
     otherType = "X";
   }
+  P1Type = type; // this is already determining the type for the first player
   if (choose === false) {
     return;
   } else {
@@ -62,11 +69,13 @@ function startWith(type, e) {
       return;
     } else if (e.target.firstChild.textContent === "" && turn === true) {
       e.target.firstChild.textContent = type;
+      e.target.firstChild.setAttribute("class", "anima");
       turn = false;
       turntimes++;
       findWinner();
     } else {
       e.target.firstChild.textContent = otherType;
+      e.target.firstChild.setAttribute("class", "anima");
       turn = true;
       turntimes++;
       findWinner();
@@ -74,7 +83,12 @@ function startWith(type, e) {
   }
 }
 
-resetBtn.addEventListener("click", clearAll);
+resetBtn.addEventListener("click", function(){
+ // alert("this will reset score to 0, are you sure?");
+  location.reload();
+});
+
+restartBtn.addEventListener("click", clearAll);
 
 function clearAll(e) {
   for (let span of spans) {
@@ -93,6 +107,11 @@ function clearAll(e) {
 
   msgDiv.style.display = "none";
   msgDiv.firstChild.textContent = "";
+
+  // to remove the animation when reset because the transition only occurs when the class is added so it must be reAdded everytime to the element
+  for (let el of document.querySelectorAll(".anima")) {
+    el.classList.remove("anima");
+  }
 }
 
 function findWinner() {
@@ -100,9 +119,19 @@ function findWinner() {
   let oWon = checkIfWinner("O");
   if (xWon) {
     //console.log("X WON");
+    if (P1Type === "X") {
+      scoreP1++;
+    } else {
+      scoreP2++;
+    }
     showMsg("X", xWon);
     decoEmptyBox(xWon);
   } else if (oWon) {
+    if (P1Type === "O") {
+      scoreP1++;
+    } else {
+      scoreP2++;
+    }
     //console.log("O WON");
     showMsg("O", oWon);
     decoEmptyBox(oWon);
@@ -111,6 +140,9 @@ function findWinner() {
     let result = false;
     showMsg("", result);
   }
+
+  play1.textContent = scoreP1;
+  play2.textContent = scoreP2;
 }
 
 function checkIfWinner(type) {

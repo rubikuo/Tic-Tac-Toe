@@ -73,6 +73,7 @@ body {
   margin: -6px; /* to make the small box overlap each other */
   border: 6px dotted rgb(25, 25, 99);
   text-align: center;
+  position: relative;
 }
 
 .smlCtn span {
@@ -90,6 +91,10 @@ button {
   background-color: rgb(43, 43, 152);
 }
 
+.resetDiv {
+  display: flex;
+}
+
 #btnO,
 #btnX {
   display: inline;
@@ -104,12 +109,45 @@ button {
   background-color: grey;
 }
 
-
-.firefly{
+.firefly {
   width: 10px;
   height: 10px;
+  animation: flyglow 2.5s infinite;
+  animation-direction: alternate; 
   background-color: rgba(255, 255, 0, 0.687);
   position: absolute;
   border-radius: 30px;
-  box-shadow: 2px 2px 9px yellow;
+  box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
+ -webkit-box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
+ -moz-box-shadow: 0px 4px 21px 29px rgba(255, 255, 0, 0.687);
+}
+
+@keyframes flyglow{
+  0%{transform: scale(0.1) translate(20px, 30px)}
+  50%{transform: scale(0.2) translate(200px, 50px)}
+  80%{transform: scale(0.1) translate(200px, 50px)}
+  100% {transform: scale(0.3) translate(300px, 100px)}
+}
+
+.anima {
+  position: absolute;
+  animation: word 0.2s;
+  animation-direction: alternate;
+  font-size: 6rem;
+  top: 2%;
+  left: 35%;
+  
+}
+
+@keyframes word {
+  from {
+    font-size: 0rem;
+    top: 50%;
+
+  }
+  to {
+    font-size: 6rem;
+    top: 2%;
+     
+  }
 }

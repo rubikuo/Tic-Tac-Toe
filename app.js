@@ -99,17 +99,17 @@ function findWinner() {
   let xWon = checkIfWinner("X");
   let oWon = checkIfWinner("O");
   if (xWon) {
-    console.log("X WON");
-    showMsg(xWon);
+    //console.log("X WON");
+    showMsg("X", xWon);
     decoEmptyBox(xWon);
   } else if (oWon) {
-    console.log("O WON");
-    showMsg(oWon);
+    //console.log("O WON");
+    showMsg("O", oWon);
+    decoEmptyBox(oWon);
   } else if (turntimes === 9) {
     console.log("DRAW");
     let result = false;
-    showMsg(result);
-    decoEmptyBox(oWon);
+    showMsg("", result);
   }
 }
 
@@ -152,13 +152,13 @@ function decoEmptyBox(result) {
   }
 }
 
-function showMsg(result) {
+function showMsg(type, result) {
   if (
     (turntimes >= 4 && result === true) ||
     (turntimes === 9 && result === true)
   ) {
     msgDiv.style.display = "block";
-    msgDiv.firstChild.textContent = "win";
+    msgDiv.firstChild.textContent = type + " won";
   } else if (result === false) {
     msgDiv.style.display = "block";
     msgDiv.firstChild.textContent = "draw";

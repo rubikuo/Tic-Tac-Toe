@@ -16,14 +16,12 @@
 <body>
     <div class="container">
         <h1>Tic Tac Toe</h1>
-        <div class="btnDiv">
-            <button id="btnO"> O Start </button>
-            <button id="btnX"> X Start </button>
-        </div>
         <div class="score">
-            <p><span id="player1" class="deco"> Player1 </span> <span class="deco">V.S.</span> <span id="player2" class="deco"> Player2 </span></p>
+            <p><span id="player1" class="deco"> Player 1 </span> <span class="deco">V.S.</span> <span id="player2"
+                    class="deco"> Player 2 </span></p>
             <p><span class="p1 deco">0</span> <span class="deco">:</span> <span class="p2 deco">0</span></p>
         </div>
+        <!-- ------------Game Board------------ -->
         <div class="bigCtn">
             <div class="smlCtn"><span id="1"></span></div>
             <div class="smlCtn"><span id="2"></span></div>
@@ -34,21 +32,29 @@
             <div class="smlCtn"><span id="7"></span></div>
             <div class="smlCtn"><span id="8"></span></div>
             <div class="smlCtn"><span id="9"></span></div>
-            <div class="msgDiv"><span id="message"></span><i class="far fa-times-circle closeIcon"></i></div>
+            <!--Pop-up messages for player1 choice, game result JS-->
+            <div class="msgDiv"><span id="message"></span>
+                <div class="btnDiv">
+                    <button id="btnO"> O </button>
+                    <button id="btnX"> X </button>
+                </div>
+                <!-- <i class="far fa-times-circle closeIcon"></i> -->
+            </div>
         </div>
+        <!--Animation fireflies with CSS-->
         <div class="firefly firefly1"></div>
         <div class="firefly firefly2"></div>
         <div class="firefly firefly3"></div>
         <div class="firefly firefly4"></div>
         <div class="firefly firefly5"></div>
-        
-
+        <!--New Game & Reset Buttons-->
         <div class="resetDiv">
-        <button id="restartBtn">New Game</button>
-        <button id="resetBtn">Reset All</button>
+            <button id="restartBtn">New Game</button>
+            <button id="resetBtn">Reset All</button>
+        </div>
+        <footer>&copy; Rubi Kuo || November 2019 </footer>
     </div>
 
-    </div>
 
 </body>
 

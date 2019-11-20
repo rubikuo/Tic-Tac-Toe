@@ -27,20 +27,19 @@ body {
 h1 {
   font-size: 4rem;
 }
-
+/* deco for spans for playerName and Player Score */
 .deco {
   font-size: 1.6rem;
-  color: rgb(9, 249, 245);
-  margin: 10px;  
-  text-shadow: 1px 1px 1px rgb(0, 0, 0);
-
+  color: rgb(13, 227, 223);
+  margin: 10px;
+  text-shadow: 1px 1px 3px rgb(0, 0, 0);
 }
 
 form {
   width: 300px;
   height: 200px;
   position: absolute;
-  top: 60%;
+  top: 55%;
   left: 50%;
   margin-top: -100px;
   margin-left: -150px;
@@ -58,8 +57,8 @@ label {
   text-shadow: 1px 1px 1px rgb(0, 0, 0);
 }
 
-input{
-   font-size: 1.1rem;
+input {
+  font-size: 1.1rem;
 }
 
 .container {
@@ -71,10 +70,6 @@ input{
   align-content: center;
   justify-content: center;
   position: relative;
-}
-
-.btnDiv {
-  margin-top: 10px;
 }
 
 .bigCtn {
@@ -92,38 +87,30 @@ input{
 /* pop-up message div */
 .msgDiv {
   width: 300px;
-  height: 100px;
+  height: 120px;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -50px;
+  margin-top: -60px;
   margin-left: -150px;
-  background-color: rgba(56, 80, 120, 0.886);
+  background-color: rgba(56, 80, 120, 0.94);
   z-index: 1;
-  display: none; 
+  display: none;
   text-align: center;
-  color: rgb(0, 255, 251);
-  text-shadow: 2px 2px 2px rgb(89, 89, 89);
+  color: rgb(4, 237, 233);
+  text-shadow: 1px 2px 3px rgb(0, 0, 0);
   border-radius: 20px;
   box-shadow: 3px 1px 4px rgb(154, 154, 154);
 }
 
-i.fa-times-circle {
-  display: none; /* control to show none or block */
-  position: absolute;
-  top: -10px;
-  right:-5px;
-  color: rgb(244, 242, 242);
-  z-index: 1;
-}
-
+/* each board cell */
 .smlCtn {
   width: 33%;
   height: 33%;
   margin: -3px; /* to make the small box overlap each other */
   border: 6px dotted rgb(0, 0, 0);
   text-align: center;
-  position: relative; 
+  position: relative;
   background-color: rgba(227, 227, 227, 0.303);
 }
 
@@ -146,21 +133,35 @@ button:focus {
   outline: none;
 }
 
+/* Div for btnO and btnX */
+.btnDiv {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  margin-left: -70px;
+}
+
+#btnO,
+#btnX {
+  width: 50px;
+  margin: 10px;
+}
+
+/* Div for skipBtn and sendBtn */
+.btnDiv2 {
+  display: flex;
+}
+.skipBtn,
+.sendBtn {
+  width: 80px;
+  margin: 0 5px;
+}
+
 .resetDiv {
   width: 300px;
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
-}
-
-#btnO,
-#btnX {
-  display: inline;
-  margin: 10px;
-}
-
-.bkGrey {
-  background-color: grey;
 }
 
 /* animation for fireflies */
@@ -208,7 +209,7 @@ button:focus {
   70% {
     transform: scale(0.14);
     opacity: 100%;
-    right: 9%
+    right: 9%;
   }
   100% {
     transform: scale(0.12);
@@ -247,7 +248,7 @@ button:focus {
   70% {
     transform: scale(0.12);
     opacity: 0%;
-    top:  50%;
+    top: 50%;
     right: 60%;
   }
 
@@ -258,7 +259,6 @@ button:focus {
     opacity: 90%;
   }
 }
-
 
 .firefly3 {
   animation: flyglow3 6.5s infinite;
@@ -303,8 +303,7 @@ button:focus {
   }
 }
 
-
- .firefly4 {
+.firefly4 {
   animation: flyglow4 5s infinite;
   animation-timing-function: ease-in;
   animation-direction: alternate-reverse;
@@ -344,7 +343,7 @@ button:focus {
     right: 9%;
     opacity: 0%;
   }
-} 
+}
 
 .firefly5 {
   animation: flyglow5 4.8s infinite;
@@ -386,9 +385,9 @@ button:focus {
     left: 1%;
     opacity: 0%;
   }
-} 
+}
 
-/* animation for the X & O */
+/* animation for the X & O on the game board */
 .anima {
   position: absolute;
   animation: word 0.2s;
@@ -408,3 +407,20 @@ button:focus {
     top: 2%;
   }
 }
+
+
+footer{
+   position: fixed;
+   bottom: 10px;
+   left: 50%;
+   margin-left: -81px;
+}
+/* control to show none or block */
+/* i.fa-times-circle {
+  display: none; 
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  color: rgb(244, 242, 242);
+  z-index: 1;
+} */

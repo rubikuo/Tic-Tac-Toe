@@ -86,18 +86,6 @@ function checkchoose() {
   // });
 }
 
-function onStartClick(e) {
-  if (this.id === "btnO") {
-    for (let smlCtn of smlCtns) {
-      smlCtn.addEventListener("click", startWithO);
-    }
-  } else {
-    for (let smlCtn of smlCtns) {
-      smlCtn.addEventListener("click", startWithX);
-    }
-  }
-  choose = true;
-}
 
 btnX.addEventListener("click", onStartClick);
 btnO.addEventListener("click", onStartClick);

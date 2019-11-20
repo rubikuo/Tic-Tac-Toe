@@ -5,7 +5,6 @@
   font-family: "Caveat Brush", cursive;
 }
 
-
 body {
   text-align: center;
   background: linear-gradient(
@@ -21,6 +20,7 @@ body {
   background-color: rgba(177, 177, 177, 0.605);
   font-family: "Kalam", cursive;
   text-shadow: 1px 1px 2px rgb(250, 250, 250);
+  position: relative;
 }
 
 h1 {
@@ -37,8 +37,41 @@ h1 {
   position: relative;
 }
 
+
 .btnDiv {
   margin-top: 10px;
+  
+}
+
+.onloadPage{
+  width: 1200px;
+  height: 1000px;
+  background-color: rgba(138, 127, 127, 0.427);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -500px;
+  margin-left: -600px;
+}
+
+.show{
+  display: block;
+}
+
+.hide{
+  display: none;
+}
+.intro{
+  width: 400px;
+  height: 300px;
+  background-color: grey;
+  border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -200px;
+ box-shadow: 2px 2px 2px 2px black;
 }
 
 .bigCtn {
@@ -81,7 +114,6 @@ h1 {
   text-align: center;
   position: relative;
   background-color: rgba(227, 227, 227, 0.303);
-  
 }
 
 .smlCtn span {
@@ -99,7 +131,7 @@ button {
   background-color: rgb(43, 43, 152);
 }
 
-button:focus{
+button:focus {
   outline: none;
 }
 
@@ -111,7 +143,21 @@ button:focus{
 #btnX {
   display: inline;
   margin: 10px;
+  animation: option ease-in alternate;
+  /* position: absolute;
+  top: -25px; */
 }
+/* 
+@keyframes option{
+  from {
+    top: -25px;
+
+  }
+  to {
+    
+  }
+
+} */
 
 .winboxs {
   color: blueviolet;

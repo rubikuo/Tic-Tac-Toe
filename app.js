@@ -3,12 +3,13 @@ const bigctn = document.querySelector(".bigCtn");
 const smlCtns = document.querySelectorAll("div.smlCtn");
 const spans = document.querySelectorAll(".smlCtn span");
 const btnDiv = document.querySelector(".btnDiv");
-//const btnO = document.getElementById("btnO");
-//const btnX = document.getElementById("btnX");
+const btnO = document.getElementById("btnO");
+const btnX = document.getElementById("btnX");
 const restartBtn = document.getElementById("restartBtn");
 const resetBtn = document.getElementById("resetBtn");
 const msgDiv = document.querySelector(".msgDiv");
- const onloadDiv = document.createElement("div");
+const closeIcon = document.querySelector("i.closeIcon");
+const onloadDiv = document.createElement("div");
 
 let turn = true;
 let choose = false;
@@ -20,75 +21,64 @@ let scoreP1 = 0;
 let scoreP2 = 0;
 let P1Type; // global variable for the playtype for later to sense who is the first player
 
-onload();
+//to check if the user has chosen X or O
+bigctn.addEventListener("click", checkchoose);
 
-function onload(){
- 
-  onloadDiv.classList.add("onloadPage");
-  const introDiv = document.createElement("div");
-  introDiv.classList.add("intro");
-  onloadDiv.appendChild(introDiv);
-  body.appendChild(onloadDiv);
-  const btnO = document.createElement("button");
-  btnO.id = "btnO";
-  btnO.textContent = "O Start";
-  const btnX = document.createElement("button");
-  btnX.id = "btnX";
-  btnX.textContent = "X Start";
-  introDiv.appendChild(btnX);
-  introDiv.appendChild(btnO);
-  btnX.addEventListener("click", onStartClick);
-  btnO.addEventListener("click", onStartClick);
+function checkchoose() {
+  if (choose === false) {
+    msgDiv.setAttribute(
+      "style",
+      "display: block; font-size: 1.8rem; padding: 10px;"
+    );
+    msgDiv.firstChild.textContent = "First Player Please Choose O or X";
+    //alert("first player please choose 'O' or 'X' ");
+    closeIcon.style.display = "block";
+  }
 
+  closeIcon.addEventListener("click", function(e) {
+    e.stopPropagation(); //bubbling happens because closeIcon is in the msgDiv that's why we nedd to stopPropagation to make the function stop
+    //console.log(e.target);
+    closeIcon.style.display = "none";
+    msgDiv.style.display = "none";
+  });
 }
 
-// to check if the user has chosen X or O
-// bigctn.addEventListener("click", checkchoose);
+function onStartClick(e) {
+  if (this.id === "btnO") {
+    for (let smlCtn of smlCtns) {
+      smlCtn.addEventListener("click", startWithO);
+    }
+  } else {
+    for (let smlCtn of smlCtns) {
+      smlCtn.addEventListener("click", startWithX);
+    }
+  }
 
-// function checkchoose() {
-//   if (choose === false) {
-//     alert("first player please choose 'O' or 'X' ");
-//   }
-// }
+  choose = true;
+}
 
+btnX.addEventListener("click", onStartClick);
+btnO.addEventListener("click", onStartClick);
 
 function onStartClick(e) {
-    if (this.id === "btnO") {
-    
-      for (let smlCtn of smlCtns) {
-        smlCtn.addEventListener("click", startWithO);
-      }
-    } else {
-      for (let smlCtn of smlCtns) {
-        smlCtn.addEventListener("click", startWithX);
-      }
+  let otherBtn;
+  if (this.id === "btnO") {
+    otherBtn = btnX;
+    for (let smlCtn of smlCtns) {
+      smlCtn.addEventListener("click", startWithO);
     }
-    onloadDiv.classList.add("hide");
-   
-    // choose = true;
+  } else {
+    otherBtn = btnO;
+    for (let smlCtn of smlCtns) {
+      smlCtn.addEventListener("click", startWithX);
+    }
   }
-// btnX.addEventListener("click", onStartClick);
-// btnO.addEventListener("click", onStartClick);
+  otherBtn.style.display = "none";
+  choose = true;
+}
 
-// function onStartClick(e) {
-//   let otherBtn;
-//   if (this.id === "btnO") {
-//     otherBtn = btnX;
-//     for (let smlCtn of smlCtns) {
-//       smlCtn.addEventListener("click", startWithO);
-//     }
-//   } else {
-//     otherBtn = btnO;
-//     for (let smlCtn of smlCtns) {
-//       smlCtn.addEventListener("click", startWithX);
-//     }
-//   }
-//   otherBtn.style.display = "none";
-//   choose = true;
-// }
-
-//  because we merge two functions with same concept but addeventListener to different btns so when user refresh, we must remove the eventListener otherwise 
-// when the user click on the other button on the second time, the other btn's function will not be triggered because the first btn has triggered the function so we must remove the first btn's event to make the event to happen on the second time 
+//  because we merge two functions with same concept but addeventListener to different btns so when user refresh, we must remove the eventListener otherwise
+// when the user click on the other button on the second time, the other btn's function will not be triggered because the first btn has triggered the function so we must remove the first btn's event to make the event to happen on the second time
 function startWithO(e) {
   startWith("O", e);
 }
@@ -103,7 +93,9 @@ function startWith(type, e) {
   } else {
     otherType = "X";
   }
+
   P1Type = type; // because when user choose O or X, the one who choose is the first player so we know the type chosen by the firstplayer is the same type we set here
+  
   if (choose === false) {
     return;
   } else {
@@ -125,9 +117,9 @@ function startWith(type, e) {
   }
 }
 
-// this btn is to refresh the window and reset everything so the score will not continue counting 
-resetBtn.addEventListener("click", function(){
- // alert("this will reset score to 0, are you sure?");
+// this btn is to refresh the window and reset everything so the score will not continue counting
+resetBtn.addEventListener("click", function() {
+  // alert("this will reset score to 0, are you sure?");
   location.reload();
 });
 
@@ -158,7 +150,7 @@ function clearAll(e) {
   }
 }
 
-// find winner 
+// find winner and accumulate players' score
 function findWinner() {
   let xWon = checkIfWinner("X");
   let oWon = checkIfWinner("O");
@@ -232,18 +224,16 @@ function decoEmptyBox(result) {
   }
 }
 
-// to control the popiup message
+// to control the popup message
 function showMsg(type, result) {
   if (
     (turntimes >= 4 && result === true) ||
     (turntimes === 9 && result === true)
   ) {
-    msgDiv.style.display = "block";
     msgDiv.firstChild.textContent = type + " won";
   } else if (result === false) {
-    msgDiv.style.display = "block";
     msgDiv.firstChild.textContent = "draw";
   }
+  msgDiv.style.display = "block";
+  msgDiv.style.fontSize = "4rem";
 }
-
-

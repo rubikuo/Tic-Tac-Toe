@@ -11,7 +11,6 @@ const msgDiv = document.querySelector(".msgDiv");
 const onloadDiv = document.createElement("div");
 const playerName1 = document.getElementById("player1");
 const playerName2 = document.getElementById("player2");
-// const closeIcon = document.querySelector("i.closeIcon");
 
 let turn = true;
 let choose = false;
@@ -22,11 +21,11 @@ let play2 = document.querySelector("span.p2");
 let scoreP1 = 0;
 let scoreP2 = 0;
 let P1Type; // global variable for the playtype for later to sense who is the first player
-//to check if the user has chosen X or O
 
 onload();
 // players can input names
 function onload() {
+  // creat the pop-up for playerNames input 
   const form = document.createElement("form");
   const label1 = document.createElement("label");
   label1.textContent = "Player 1: ";
@@ -68,55 +67,32 @@ function onload() {
 }
 
 bigctn.addEventListener("click", checkchoose);
-
+// to check if player1 has chosen x or O
 function checkchoose() {
   if (choose === false) {
-    // closeIcon.style.display = "block";
     msgDiv.setAttribute(
       "style",
       "display: block; font-size: 1.8rem; padding: 15px;"
     );
     msgDiv.firstChild.textContent = playerName1.textContent + ", Please Choose";
   }
-  // closeIcon.addEventListener("click", function(e) {
-  //   e.stopPropagation(); //bubbling happens because closeIcon is in the msgDiv that's why we nedd to stopPropagation to make the function stop
-  //   //console.log(e.target);
-  //   closeIcon.style.display = "none";
-  //   msgDiv.style.display = "none";
-  // });
 }
 
-function onStartClick(e) {
-  if (this.id === "btnO") {
-    for (let smlCtn of smlCtns) {
-      smlCtn.addEventListener("click", startWithO);
-    }
-  } else {
-    for (let smlCtn of smlCtns) {
-      smlCtn.addEventListener("click", startWithX);
-    }
-  }
-  choose = true;
-}
-
+//because btnX and btnO share same function
 btnX.addEventListener("click", onStartClick);
 btnO.addEventListener("click", onStartClick);
 
 function onStartClick(e) {
-  // let otherBtn;
   e.stopPropagation();
   if (this.id === "btnO") {
-    //otherBtn = btnX;
     for (let smlCtn of smlCtns) {
       smlCtn.addEventListener("click", startWithO);
     }
   } else {
-    // otherBtn = btnO;
     for (let smlCtn of smlCtns) {
       smlCtn.addEventListener("click", startWithX);
     }
   }
-
   msgDiv.style.display = "none";
   btnX.style.display = "none";
   btnO.style.display = "none";
@@ -211,7 +187,6 @@ function findWinner() {
       scoreP2++;
       showMsg(playerName2.textContent, xWon);
     }
-
     decoEmptyBox(xWon);
   } else if (oWon) {
     if (P1Type === "O") {
@@ -222,7 +197,6 @@ function findWinner() {
       scoreP2++;
     }
     //console.log("O WON");
-
     decoEmptyBox(oWon);
   } else if (turntimes === 9) {
     //console.log("DRAW");
@@ -288,11 +262,9 @@ function showMsg(playerName, result) {
   ) {
     msgDiv.style.fontSize = "3.1rem";
     msgDiv.firstChild.textContent = playerName + " Wins!";
-
   } else if (result === false) {
     msgDiv.firstChild.textContent = "Draw";
     msgDiv.style.fontSize = "3.5rem";
   }
   msgDiv.style.display = "block";
-
 }

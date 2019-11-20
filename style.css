@@ -151,6 +151,7 @@ button:focus {
 .btnDiv2 {
   display: flex;
 }
+
 .skipBtn,
 .sendBtn {
   width: 80px;
@@ -408,19 +409,9 @@ button:focus {
   }
 }
 
-
-footer{
-   position: fixed;
-   bottom: 10px;
-   left: 50%;
-   margin-left: -81px;
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -81px;
 }
-/* control to show none or block */
-/* i.fa-times-circle {
-  display: none; 
-  position: absolute;
-  top: -10px;
-  right: -5px;
-  color: rgb(244, 242, 242);
-  z-index: 1;
-} */

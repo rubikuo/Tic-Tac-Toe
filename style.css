@@ -28,6 +28,40 @@ h1 {
   font-size: 4rem;
 }
 
+.deco {
+  font-size: 1.6rem;
+  color: rgb(9, 249, 245);
+  margin: 10px;  
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+
+}
+
+form {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -150px;
+  background-color: rgba(82, 82, 82, 0.927);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 20px;
+  box-shadow: 3px 1px 4px rgba(154, 154, 154, 0.94);
+}
+
+label {
+  font-size: 1.3rem;
+  color: rgb(23, 249, 245);
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+}
+
+input{
+   font-size: 1.1rem;
+}
+
 .container {
   width: 960px;
   height: 100vh;
@@ -39,35 +73,8 @@ h1 {
   position: relative;
 }
 
-
 .btnDiv {
   margin-top: 10px;
-  
-}
-
-.onloadPage{
-  width: 1200px;
-  height: 1000px;
-  background-color: rgba(138, 127, 127, 0.427);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -500px;
-  margin-left: -600px;
-}
-
-
-.intro{
-  width: 400px;
-  height: 300px;
-  background-color: grey;
-  border-radius: 30px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -150px;
-  margin-left: -200px;
- box-shadow: 2px 2px 2px 2px black;
 }
 
 .bigCtn {
@@ -129,10 +136,10 @@ button {
   line-height: 36px;
   display: block;
   margin: 0px auto;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 10px;
   color: white;
-  background-color: rgb(43, 43, 152);
+  background-color: rgb(35, 64, 113);
 }
 
 button:focus {
@@ -140,31 +147,16 @@ button:focus {
 }
 
 .resetDiv {
+  width: 300px;
+  margin-top: 10px;
   display: flex;
+  justify-content: space-around;
 }
 
 #btnO,
 #btnX {
   display: inline;
   margin: 10px;
-  animation: option ease-in alternate;
-  /* position: absolute;
-  top: -25px; */
-}
-/* 
-@keyframes option{
-  from {
-    top: -25px;
-
-  }
-  to {
-    
-  }
-
-} */
-
-.winboxs {
-  color: blueviolet;
 }
 
 .bkGrey {

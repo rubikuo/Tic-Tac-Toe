@@ -10,29 +10,61 @@ const resetBtn = document.getElementById("resetBtn");
 const msgDiv = document.querySelector(".msgDiv");
 const closeIcon = document.querySelector("i.closeIcon");
 const onloadDiv = document.createElement("div");
+const playerName1 = document.getElementById("player1");
+const playerName2 = document.getElementById("player2");
 
 let turn = true;
 let choose = false;
 let turntimes = 0;
 let win = false;
-let play1 = document.querySelector(".p1");
-let play2 = document.querySelector(".p2");
+let play1 = document.querySelector("span.p1");
+let play2 = document.querySelector("span.p2");
 let scoreP1 = 0;
 let scoreP2 = 0;
 let P1Type; // global variable for the playtype for later to sense who is the first player
-
 //to check if the user has chosen X or O
+
+onload();
+
+function onload() {
+  const form = document.createElement("form");
+  const label1 = document.createElement("label");
+  label1.textContent = "Player1: ";
+  const p1Input = document.createElement("input");
+  label1.appendChild(p1Input);
+  form.appendChild(label1);
+  const label2 = document.createElement("label");
+  label2.textContent = "Player2: ";
+  const p2Input = document.createElement("input");
+  label2.appendChild(p2Input);
+  form.appendChild(label2);
+  const sendBtn = document.createElement("button");
+  sendBtn.textContent = "Combate!";
+  form.appendChild(sendBtn);
+  body.appendChild(form);
+  sendBtn.addEventListener("click", function(e) {
+    let value1 = p1Input.value;
+    let value2 = p2Input.value;
+    e.stopPropagation();
+    if (value1 !== "" && value2 !== "") {
+      playerName1.textContent = value1;
+      playerName2.textContent = value2;
+    }
+    body.removeChild(form);
+  });
+}
+
 bigctn.addEventListener("click", checkchoose);
 
 function checkchoose() {
   if (choose === false) {
+    closeIcon.style.display = "block";
     msgDiv.setAttribute(
       "style",
-      "display: block; font-size: 1.8rem; padding: 10px;"
+      "display: block; font-size: 1.8rem; padding: 15px;"
     );
-    msgDiv.firstChild.textContent = "First Player Please Choose O or X";
-    //alert("first player please choose 'O' or 'X' ");
-    closeIcon.style.display = "block";
+    msgDiv.firstChild.textContent =
+      playerName1.textContent + ", Please Choose O or X";
   }
 
   closeIcon.addEventListener("click", function(e) {
@@ -53,7 +85,6 @@ function onStartClick(e) {
       smlCtn.addEventListener("click", startWithX);
     }
   }
-
   choose = true;
 }
 
@@ -61,19 +92,23 @@ btnX.addEventListener("click", onStartClick);
 btnO.addEventListener("click", onStartClick);
 
 function onStartClick(e) {
-  let otherBtn;
+  // let otherBtn;
   if (this.id === "btnO") {
-    otherBtn = btnX;
+    //otherBtn = btnX;
     for (let smlCtn of smlCtns) {
       smlCtn.addEventListener("click", startWithO);
     }
   } else {
-    otherBtn = btnO;
+    // otherBtn = btnO;
     for (let smlCtn of smlCtns) {
       smlCtn.addEventListener("click", startWithX);
     }
   }
-  otherBtn.style.display = "none";
+
+  btnX.style.display = "none";
+  btnO.style.display = "none";
+  // this.style.display ="none";
+  // otherBtn.style.display = "none";
   choose = true;
 }
 
@@ -85,6 +120,7 @@ function startWithO(e) {
 function startWithX(e) {
   startWith("X", e);
 }
+
 // to set the O or X to a parameter as type so let the function control the type
 function startWith(type, e) {
   let otherType;
@@ -95,7 +131,9 @@ function startWith(type, e) {
   }
 
   P1Type = type; // because when user choose O or X, the one who choose is the first player so we know the type chosen by the firstplayer is the same type we set here
-  
+
+  P2Type = otherType;
+
   if (choose === false) {
     return;
   } else {
@@ -158,19 +196,23 @@ function findWinner() {
     //console.log("X WON");
     if (P1Type === "X") {
       scoreP1++;
+      showMsg(playerName1.textContent, xWon);
     } else {
       scoreP2++;
+      showMsg(playerName2.textContent, xWon);
     }
-    showMsg("X", xWon);
+
     decoEmptyBox(xWon);
   } else if (oWon) {
     if (P1Type === "O") {
+      showMsg(playerName1.textContent, oWon);
       scoreP1++;
     } else {
+      showMsg(playerName2.textContent, oWon);
       scoreP2++;
     }
     //console.log("O WON");
-    showMsg("O", oWon);
+
     decoEmptyBox(oWon);
   } else if (turntimes === 9) {
     //console.log("DRAW");
@@ -224,16 +266,16 @@ function decoEmptyBox(result) {
   }
 }
 
-// to control the popup message
-function showMsg(type, result) {
+// to control the popup message for the game result
+function showMsg(playerName, result) {
   if (
     (turntimes >= 4 && result === true) ||
     (turntimes === 9 && result === true)
   ) {
-    msgDiv.firstChild.textContent = type + " won";
+    msgDiv.firstChild.textContent = playerName + " won";
   } else if (result === false) {
     msgDiv.firstChild.textContent = "draw";
   }
   msgDiv.style.display = "block";
-  msgDiv.style.fontSize = "4rem";
+  msgDiv.style.fontSize = "3.5rem";
 }

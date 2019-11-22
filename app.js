@@ -25,7 +25,7 @@ let P1Type; // global variable for the playtype for later to sense who is the fi
 onload();
 // players can input names
 function onload() {
-  // creat the pop-up for playerNames input 
+  // creat the pop-up for playerNames input
   const form = document.createElement("form");
   const label1 = document.createElement("label");
   label1.textContent = "Player 1: ";

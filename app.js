@@ -1,3 +1,4 @@
+const html = document.querySelector("html")
 const body = document.querySelector("body");
 const bigctn = document.querySelector(".bigCtn");
 const smlCtns = document.querySelectorAll("div.smlCtn");
@@ -26,6 +27,8 @@ onload();
 // players can input names
 function onload() {
   // creat the pop-up for playerNames input
+  const modalBg = document.createElement("div");
+  modalBg.className= "modalBg";
   const form = document.createElement("form");
   const label1 = document.createElement("label");
   label1.textContent = "Player 1: ";
@@ -48,10 +51,11 @@ function onload() {
   btnDiv.appendChild(sendBtn);
   btnDiv.appendChild(skipBtn);
   form.appendChild(btnDiv);
-  body.appendChild(form);
+  modalBg.appendChild(form);
+  body.appendChild(modalBg);
 
   skipBtn.addEventListener("click", function() {
-    body.removeChild(form);
+    body.removeChild(modalBg);
   });
 
   sendBtn.addEventListener("click", function(e) {
@@ -62,7 +66,7 @@ function onload() {
       playerName1.textContent = value1;
       playerName2.textContent = value2;
     }
-    body.removeChild(form);
+    body.removeChild(modalBg);
   });
 }
 
@@ -224,7 +228,7 @@ function checkIfWinner(type) {
   ];
 
   // 1.loop through array which contains 8 win possibilities
-
+  // this loop is to check if there is any win case
   for (let i = 0; i < winCases.length; i++) {
     let winCase = winCases[i]; // 2. assign each posibility to a variable
     let win = true; // 3. assume win is true, this must be defined in loop in this case otherwise this will not work
@@ -245,6 +249,7 @@ function checkIfWinner(type) {
 //by looping through the array of span to find the empty boxes
 function decoEmptyBox(result) {
   if (result === true) {
+    // spans is dom element so we need to convert to Array by using Array.from
     let emptyboxs = Array.from(spans).filter(span => span.textContent === "");
     console.log(emptyboxs);
     for (let emptybox of emptyboxs) {
